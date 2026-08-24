@@ -1,27 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, ArrowRight, X, ExternalLink, Sparkles } from 'lucide-react';
+import React from 'react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
-import { GithubIcon } from './Hero';
 
 export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [activeFilter, setActiveFilter] = useState('All');
-
-  // Close modal on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setSelectedProject(null);
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  const filteredProjects = activeFilter === 'All'
-    ? projectsData
-    : projectsData.filter(p => p.category === activeFilter);
-
   return (
-    <section id="projects" className="section-wrapper" style={{ scrollMarginTop: '80px', padding: '3.5rem 0' }}>
+    <section id="projects" className="section-wrapper" style={{ scrollMarginTop: '80px', padding: '4rem 0' }}>
       <div className="container">
         
         {/* Section Header with "View All Projects" */}
@@ -30,7 +13,7 @@ export default function Projects() {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'flex-end',
-            marginBottom: '2rem',
+            marginBottom: '2.2rem',
             flexWrap: 'wrap',
             gap: '1rem'
           }}
@@ -46,50 +29,55 @@ export default function Projects() {
             rel="noopener noreferrer"
             className="btn-secondary"
             style={{
-              padding: '0.5rem 1.2rem',
-              fontSize: '0.85rem',
+              padding: '0.55rem 1.25rem',
+              fontSize: '0.88rem',
               border: '1px solid rgba(192, 132, 252, 0.35)',
-              background: 'rgba(28, 14, 50, 0.75)'
+              background: 'rgba(28, 14, 50, 0.75)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem'
             }}
           >
             <span>View All Projects</span>
-            <ArrowRight size={15} />
+            <ArrowRight size={16} />
           </a>
         </div>
 
-        {/* 3 Projects Grid */}
+        {/* 3 Projects Grid - Matching mockup */}
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '1.5rem'
+            gap: '1.6rem'
           }}
           className="projects-grid"
         >
-          {filteredProjects.map((project) => (
-            <div
+          {projectsData.map((project) => (
+            <a
               key={project.id}
+              href={project.githubUrl || "https://github.com/Basma-bob"}
+              target="_blank"
+              rel="noopener noreferrer"
               className="glass-card project-card-item"
-              onClick={() => setSelectedProject(project)}
               style={{
                 borderRadius: '18px',
-                background: 'rgba(22, 11, 38, 0.92)',
+                background: 'rgba(22, 11, 38, 0.9)',
                 border: '1px solid rgba(192, 132, 252, 0.3)',
                 padding: '0.9rem',
                 display: 'flex',
                 flexDirection: 'column',
-                cursor: 'pointer',
+                textDecoration: 'none',
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.55), 0 0 18px rgba(147, 51, 234, 0.1)'
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.55), 0 0 15px rgba(147, 51, 234, 0.1)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(216, 180, 254, 0.8)';
-                e.currentTarget.style.boxShadow = '0 15px 40px rgba(147, 51, 234, 0.35), 0 0 25px rgba(192, 132, 252, 0.3)';
-                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.borderColor = 'rgba(216, 180, 254, 0.85)';
+                e.currentTarget.style.boxShadow = '0 15px 40px rgba(147, 51, 234, 0.4), 0 0 25px rgba(192, 132, 252, 0.35)';
+                e.currentTarget.style.transform = 'translateY(-5px)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = 'rgba(192, 132, 252, 0.3)';
-                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.55), 0 0 18px rgba(147, 51, 234, 0.1)';
+                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.55), 0 0 15px rgba(147, 51, 234, 0.1)';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
@@ -101,7 +89,7 @@ export default function Projects() {
                   borderRadius: '12px',
                   overflow: 'hidden',
                   position: 'relative',
-                  marginBottom: '0.9rem',
+                  marginBottom: '1rem',
                   border: '1px solid rgba(168, 85, 247, 0.25)',
                   background: '#07030E'
                 }}
@@ -120,19 +108,19 @@ export default function Projects() {
                 />
               </div>
 
-              {/* Card Meta */}
+              {/* Card Meta: Title + Subtitle + Arrow */}
               <div
                 style={{
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  padding: '0.2rem 0.4rem 0.3rem 0.4rem'
+                  padding: '0.2rem 0.4rem 0.4rem 0.4rem'
                 }}
               >
                 <div>
                   <h3
                     style={{
-                      fontSize: '1.15rem',
+                      fontSize: '1.2rem',
                       fontWeight: '700',
                       color: '#FFFFFF',
                       lineHeight: '1.2'
@@ -142,9 +130,9 @@ export default function Projects() {
                   </h3>
                   <p
                     style={{
-                      fontSize: '0.82rem',
+                      fontSize: '0.84rem',
                       color: '#D8B4FE',
-                      marginTop: '0.2rem',
+                      marginTop: '0.25rem',
                       fontWeight: '500'
                     }}
                   >
@@ -155,8 +143,8 @@ export default function Projects() {
                 {/* Arrow Icon Button */}
                 <div
                   style={{
-                    width: '36px',
-                    height: '36px',
+                    width: '38px',
+                    height: '38px',
                     borderRadius: '50%',
                     background: 'rgba(45, 20, 80, 0.85)',
                     border: '1px solid rgba(216, 180, 254, 0.45)',
@@ -169,28 +157,28 @@ export default function Projects() {
                     transition: 'all 0.2s ease'
                   }}
                 >
-                  <ArrowUpRight size={18} />
+                  <ArrowUpRight size={19} />
                 </div>
               </div>
 
-            </div>
+            </a>
           ))}
         </div>
 
-        {/* Pagination indicator dots */}
+        {/* Pagination indicator dots as in mockup */}
         <div
           style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             gap: '0.5rem',
-            marginTop: '2rem'
+            marginTop: '2.2rem'
           }}
         >
           <span
             style={{
-              width: '24px',
-              height: '7px',
+              width: '26px',
+              height: '8px',
               borderRadius: '9999px',
               background: '#C084FC',
               boxShadow: '0 0 10px rgba(192, 132, 252, 0.9)'
@@ -198,16 +186,16 @@ export default function Projects() {
           />
           <span
             style={{
-              width: '7px',
-              height: '7px',
+              width: '8px',
+              height: '8px',
               borderRadius: '50%',
               background: 'rgba(168, 85, 247, 0.4)'
             }}
           />
           <span
             style={{
-              width: '7px',
-              height: '7px',
+              width: '8px',
+              height: '8px',
               borderRadius: '50%',
               background: 'rgba(168, 85, 247, 0.4)'
             }}
@@ -215,193 +203,6 @@ export default function Projects() {
         </div>
 
       </div>
-
-      {/* Fully Visible, High-Definition Modal */}
-      {selectedProject && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 1000,
-            background: 'rgba(5, 2, 12, 0.88)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '1.25rem',
-            overflowY: 'auto'
-          }}
-          onClick={() => setSelectedProject(null)}
-        >
-          <div
-            className="glass-card"
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              width: '100%',
-              maxWidth: '620px',
-              maxHeight: '88vh',
-              overflowY: 'auto',
-              background: 'rgba(18, 9, 34, 0.98)',
-              border: '1px solid rgba(216, 180, 254, 0.5)',
-              borderRadius: '22px',
-              boxShadow: '0 25px 70px rgba(0, 0, 0, 0.95), 0 0 45px rgba(147, 51, 234, 0.45)',
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'column',
-              margin: 'auto'
-            }}
-          >
-            {/* Close Button at top right */}
-            <button
-              onClick={() => setSelectedProject(null)}
-              style={{
-                position: 'absolute',
-                top: '12px',
-                right: '12px',
-                width: '36px',
-                height: '36px',
-                borderRadius: '50%',
-                background: 'rgba(12, 6, 24, 0.9)',
-                border: '1px solid rgba(216, 180, 254, 0.5)',
-                color: '#FFFFFF',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                boxShadow: '0 4px 15px rgba(0,0,0,0.6)',
-                zIndex: 20,
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(147, 51, 234, 0.9)';
-                e.currentTarget.style.transform = 'scale(1.08)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(12, 6, 24, 0.9)';
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-              aria-label="Close modal"
-            >
-              <X size={18} />
-            </button>
-
-            {/* Modal Image Header - Fully visible and centered without aggressive crop */}
-            <div
-              style={{
-                position: 'relative',
-                width: '100%',
-                background: '#07030E',
-                borderBottom: '1px solid rgba(168, 85, 247, 0.25)',
-                padding: '0.75rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
-              <img
-                src={selectedProject.image}
-                alt={selectedProject.title}
-                style={{
-                  width: '100%',
-                  maxHeight: '260px',
-                  objectFit: 'contain',
-                  borderRadius: '12px',
-                  display: 'block'
-                }}
-              />
-            </div>
-
-            {/* Modal Body */}
-            <div style={{ padding: '1.5rem 1.8rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.45rem', flexWrap: 'wrap' }}>
-                <span
-                  style={{
-                    fontSize: '0.75rem',
-                    fontWeight: '700',
-                    color: '#FFFFFF',
-                    background: 'linear-gradient(135deg, #9333EA, #A855F7)',
-                    border: '1px solid rgba(233, 213, 255, 0.4)',
-                    padding: '0.2rem 0.7rem',
-                    borderRadius: '9999px',
-                    boxShadow: '0 0 10px rgba(168, 85, 247, 0.3)'
-                  }}
-                >
-                  {selectedProject.category}
-                </span>
-                <span style={{ fontSize: '0.84rem', color: '#D8B4FE', fontWeight: '500' }}>
-                  {selectedProject.subtitle}
-                </span>
-              </div>
-
-              <h3 style={{ fontSize: '1.45rem', fontWeight: '800', color: '#FFFFFF', marginBottom: '0.6rem' }}>
-                {selectedProject.title}
-              </h3>
-
-              <p style={{ color: '#E9D5FF', fontSize: '0.92rem', lineHeight: '1.65', marginBottom: '1.2rem', opacity: 0.95 }}>
-                {selectedProject.description}
-              </p>
-
-              {/* Tags */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginBottom: '1.4rem' }}>
-                {selectedProject.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      fontSize: '0.8rem',
-                      fontWeight: '500',
-                      background: 'rgba(38, 20, 68, 0.85)',
-                      border: '1px solid rgba(192, 132, 252, 0.35)',
-                      color: '#E9D5FF',
-                      padding: '0.25rem 0.7rem',
-                      borderRadius: '8px'
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* Action Buttons */}
-              <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap' }}>
-                <a
-                  href={selectedProject.demoUrl}
-                  className="btn-primary"
-                  style={{ flex: '1 1 140px', padding: '0.7rem 1.25rem', fontSize: '0.9rem' }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert(`Opening live preview for ${selectedProject.title}`);
-                  }}
-                >
-                  <span>Live Preview</span>
-                  <ExternalLink size={15} />
-                </a>
-
-                <a
-                  href={selectedProject.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary"
-                  style={{
-                    flex: '1 1 140px',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.45rem',
-                    padding: '0.7rem 1.25rem',
-                    fontSize: '0.9rem',
-                    border: '1px solid rgba(192, 132, 252, 0.4)'
-                  }}
-                >
-                  <span>Source Code</span>
-                  <GithubIcon size={15} />
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      )}
 
       <style>{`
         @media (max-width: 960px) {
