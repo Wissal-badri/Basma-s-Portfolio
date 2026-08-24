@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, ArrowRight, X, ExternalLink, Sparkles, Layers } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, X, ExternalLink, Sparkles } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
 import { GithubIcon } from './Hero';
 
@@ -21,7 +21,7 @@ export default function Projects() {
     : projectsData.filter(p => p.category === activeFilter);
 
   return (
-    <section id="projects" className="section-wrapper" style={{ scrollMarginTop: '80px' }}>
+    <section id="projects" className="section-wrapper" style={{ scrollMarginTop: '80px', padding: '3.5rem 0' }}>
       <div className="container">
         
         {/* Section Header with "View All Projects" */}
@@ -30,7 +30,7 @@ export default function Projects() {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'flex-end',
-            marginBottom: '2.5rem',
+            marginBottom: '2rem',
             flexWrap: 'wrap',
             gap: '1rem'
           }}
@@ -41,19 +41,19 @@ export default function Projects() {
           </div>
 
           <a
-            href="https://github.com/Wissal-badri"
+            href="https://github.com/Basma-bob"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary"
             style={{
-              padding: '0.6rem 1.35rem',
-              fontSize: '0.9rem',
+              padding: '0.5rem 1.2rem',
+              fontSize: '0.85rem',
               border: '1px solid rgba(192, 132, 252, 0.35)',
               background: 'rgba(28, 14, 50, 0.75)'
             }}
           >
             <span>View All Projects</span>
-            <ArrowRight size={16} />
+            <ArrowRight size={15} />
           </a>
         </div>
 
@@ -62,7 +62,7 @@ export default function Projects() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '1.75rem'
+            gap: '1.5rem'
           }}
           className="projects-grid"
         >
@@ -72,38 +72,38 @@ export default function Projects() {
               className="glass-card project-card-item"
               onClick={() => setSelectedProject(project)}
               style={{
-                borderRadius: '20px',
-                background: 'rgba(24, 12, 42, 0.88)',
-                border: '1px solid rgba(192, 132, 252, 0.32)',
-                padding: '1rem',
+                borderRadius: '18px',
+                background: 'rgba(22, 11, 38, 0.92)',
+                border: '1px solid rgba(192, 132, 252, 0.3)',
+                padding: '0.9rem',
                 display: 'flex',
                 flexDirection: 'column',
                 cursor: 'pointer',
-                transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
-                boxShadow: '0 12px 35px rgba(0, 0, 0, 0.55), 0 0 20px rgba(147, 51, 234, 0.12)'
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.55), 0 0 18px rgba(147, 51, 234, 0.1)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = 'rgba(216, 180, 254, 0.8)';
-                e.currentTarget.style.boxShadow = '0 18px 45px rgba(147, 51, 234, 0.35), 0 0 30px rgba(192, 132, 252, 0.3)';
-                e.currentTarget.style.transform = 'translateY(-6px)';
+                e.currentTarget.style.boxShadow = '0 15px 40px rgba(147, 51, 234, 0.35), 0 0 25px rgba(192, 132, 252, 0.3)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(192, 132, 252, 0.32)';
-                e.currentTarget.style.boxShadow = '0 12px 35px rgba(0, 0, 0, 0.55), 0 0 20px rgba(147, 51, 234, 0.12)';
+                e.currentTarget.style.borderColor = 'rgba(192, 132, 252, 0.3)';
+                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.55), 0 0 18px rgba(147, 51, 234, 0.1)';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
-              {/* Image Box - Vivid and Sharp */}
+              {/* Image Box */}
               <div
                 style={{
                   width: '100%',
                   aspectRatio: '16/10',
-                  borderRadius: '14px',
+                  borderRadius: '12px',
                   overflow: 'hidden',
                   position: 'relative',
-                  marginBottom: '1.1rem',
-                  border: '1px solid rgba(168, 85, 247, 0.3)',
-                  background: '#0B0517'
+                  marginBottom: '0.9rem',
+                  border: '1px solid rgba(168, 85, 247, 0.25)',
+                  background: '#07030E'
                 }}
               >
                 <img
@@ -113,38 +113,38 @@ export default function Projects() {
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
+                    objectPosition: 'top center',
                     display: 'block',
-                    transition: 'transform 0.5s ease'
+                    transition: 'transform 0.4s ease'
                   }}
                 />
               </div>
 
-              {/* Card Bottom Meta */}
+              {/* Card Meta */}
               <div
                 style={{
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  padding: '0.3rem 0.6rem 0.5rem 0.6rem'
+                  padding: '0.2rem 0.4rem 0.3rem 0.4rem'
                 }}
               >
                 <div>
                   <h3
                     style={{
-                      fontSize: '1.25rem',
+                      fontSize: '1.15rem',
                       fontWeight: '700',
                       color: '#FFFFFF',
-                      lineHeight: '1.25',
-                      letterSpacing: '-0.3px'
+                      lineHeight: '1.2'
                     }}
                   >
                     {project.title}
                   </h3>
                   <p
                     style={{
-                      fontSize: '0.85rem',
+                      fontSize: '0.82rem',
                       color: '#D8B4FE',
-                      marginTop: '0.25rem',
+                      marginTop: '0.2rem',
                       fontWeight: '500'
                     }}
                   >
@@ -155,8 +155,8 @@ export default function Projects() {
                 {/* Arrow Icon Button */}
                 <div
                   style={{
-                    width: '40px',
-                    height: '40px',
+                    width: '36px',
+                    height: '36px',
                     borderRadius: '50%',
                     background: 'rgba(45, 20, 80, 0.85)',
                     border: '1px solid rgba(216, 180, 254, 0.45)',
@@ -165,11 +165,11 @@ export default function Projects() {
                     justifyContent: 'center',
                     color: '#FFFFFF',
                     flexShrink: 0,
-                    boxShadow: '0 0 15px rgba(168, 85, 247, 0.35)',
-                    transition: 'all 0.25s ease'
+                    boxShadow: '0 0 12px rgba(168, 85, 247, 0.35)',
+                    transition: 'all 0.2s ease'
                   }}
                 >
-                  <ArrowUpRight size={20} />
+                  <ArrowUpRight size={18} />
                 </div>
               </div>
 
@@ -177,37 +177,37 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Pagination indicator dots as seen in mockup */}
+        {/* Pagination indicator dots */}
         <div
           style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             gap: '0.5rem',
-            marginTop: '2.5rem'
+            marginTop: '2rem'
           }}
         >
           <span
             style={{
-              width: '26px',
-              height: '8px',
+              width: '24px',
+              height: '7px',
               borderRadius: '9999px',
               background: '#C084FC',
-              boxShadow: '0 0 12px rgba(192, 132, 252, 0.9)'
+              boxShadow: '0 0 10px rgba(192, 132, 252, 0.9)'
             }}
           />
           <span
             style={{
-              width: '8px',
-              height: '8px',
+              width: '7px',
+              height: '7px',
               borderRadius: '50%',
               background: 'rgba(168, 85, 247, 0.4)'
             }}
           />
           <span
             style={{
-              width: '8px',
-              height: '8px',
+              width: '7px',
+              height: '7px',
               borderRadius: '50%',
               background: 'rgba(168, 85, 247, 0.4)'
             }}
@@ -216,20 +216,21 @@ export default function Projects() {
 
       </div>
 
-      {/* Interactive Project Detail Modal */}
+      {/* Fully Visible, High-Definition Modal */}
       {selectedProject && (
         <div
           style={{
             position: 'fixed',
             inset: 0,
-            zIndex: 200,
+            zIndex: 1000,
             background: 'rgba(5, 2, 12, 0.88)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '1.5rem'
+            padding: '1.25rem',
+            overflowY: 'auto'
           }}
           onClick={() => setSelectedProject(null)}
         >
@@ -238,98 +239,122 @@ export default function Projects() {
             onClick={(e) => e.stopPropagation()}
             style={{
               width: '100%',
-              maxWidth: '680px',
-              background: 'rgba(18, 9, 34, 0.96)',
-              border: '1px solid rgba(216, 180, 254, 0.45)',
-              borderRadius: '24px',
-              overflow: 'hidden',
-              boxShadow: '0 25px 70px rgba(0, 0, 0, 0.9), 0 0 45px rgba(147, 51, 234, 0.45)',
-              animation: 'fadeIn 0.25s ease-out'
+              maxWidth: '620px',
+              maxHeight: '88vh',
+              overflowY: 'auto',
+              background: 'rgba(18, 9, 34, 0.98)',
+              border: '1px solid rgba(216, 180, 254, 0.5)',
+              borderRadius: '22px',
+              boxShadow: '0 25px 70px rgba(0, 0, 0, 0.95), 0 0 45px rgba(147, 51, 234, 0.45)',
+              position: 'relative',
+              display: 'flex',
+              flexDirection: 'column',
+              margin: 'auto'
             }}
           >
-            {/* Modal Image Header */}
-            <div style={{ position: 'relative', width: '100%', height: '260px', background: '#0A0515' }}>
+            {/* Close Button at top right */}
+            <button
+              onClick={() => setSelectedProject(null)}
+              style={{
+                position: 'absolute',
+                top: '12px',
+                right: '12px',
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                background: 'rgba(12, 6, 24, 0.9)',
+                border: '1px solid rgba(216, 180, 254, 0.5)',
+                color: '#FFFFFF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.6)',
+                zIndex: 20,
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(147, 51, 234, 0.9)';
+                e.currentTarget.style.transform = 'scale(1.08)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(12, 6, 24, 0.9)';
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+              aria-label="Close modal"
+            >
+              <X size={18} />
+            </button>
+
+            {/* Modal Image Header - Fully visible and centered without aggressive crop */}
+            <div
+              style={{
+                position: 'relative',
+                width: '100%',
+                background: '#07030E',
+                borderBottom: '1px solid rgba(168, 85, 247, 0.25)',
+                padding: '0.75rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
               <img
                 src={selectedProject.image}
                 alt={selectedProject.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-              <button
-                onClick={() => setSelectedProject(null)}
                 style={{
-                  position: 'absolute',
-                  top: '14px',
-                  right: '14px',
-                  width: '38px',
-                  height: '38px',
-                  borderRadius: '50%',
-                  background: 'rgba(10, 5, 20, 0.85)',
-                  border: '1px solid rgba(216, 180, 254, 0.4)',
-                  color: '#FFFFFF',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
-                  transition: 'all 0.2s ease'
+                  width: '100%',
+                  maxHeight: '260px',
+                  objectFit: 'contain',
+                  borderRadius: '12px',
+                  display: 'block'
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(147, 51, 234, 0.8)';
-                  e.currentTarget.style.transform = 'scale(1.08)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(10, 5, 20, 0.85)';
-                  e.currentTarget.style.transform = 'scale(1)';
-                }}
-                aria-label="Close modal"
-              >
-                <X size={20} />
-              </button>
+              />
             </div>
 
             {/* Modal Body */}
-            <div style={{ padding: '2rem 2.2rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.6rem' }}>
+            <div style={{ padding: '1.5rem 1.8rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.45rem', flexWrap: 'wrap' }}>
                 <span
                   style={{
-                    fontSize: '0.78rem',
+                    fontSize: '0.75rem',
                     fontWeight: '700',
                     color: '#FFFFFF',
                     background: 'linear-gradient(135deg, #9333EA, #A855F7)',
                     border: '1px solid rgba(233, 213, 255, 0.4)',
-                    padding: '0.25rem 0.8rem',
+                    padding: '0.2rem 0.7rem',
                     borderRadius: '9999px',
-                    boxShadow: '0 0 12px rgba(168, 85, 247, 0.35)'
+                    boxShadow: '0 0 10px rgba(168, 85, 247, 0.3)'
                   }}
                 >
                   {selectedProject.category}
                 </span>
-                <span style={{ fontSize: '0.88rem', color: '#D8B4FE', fontWeight: '500' }}>
+                <span style={{ fontSize: '0.84rem', color: '#D8B4FE', fontWeight: '500' }}>
                   {selectedProject.subtitle}
                 </span>
               </div>
 
-              <h3 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#FFFFFF', marginBottom: '0.85rem' }}>
+              <h3 style={{ fontSize: '1.45rem', fontWeight: '800', color: '#FFFFFF', marginBottom: '0.6rem' }}>
                 {selectedProject.title}
               </h3>
 
-              <p style={{ color: '#E9D5FF', fontSize: '0.96rem', lineHeight: '1.7', marginBottom: '1.5rem', opacity: 0.95 }}>
+              <p style={{ color: '#E9D5FF', fontSize: '0.92rem', lineHeight: '1.65', marginBottom: '1.2rem', opacity: 0.95 }}>
                 {selectedProject.description}
               </p>
 
               {/* Tags */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem', marginBottom: '2rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginBottom: '1.4rem' }}>
                 {selectedProject.tags.map((tag, i) => (
                   <span
                     key={i}
                     style={{
-                      fontSize: '0.84rem',
+                      fontSize: '0.8rem',
                       fontWeight: '500',
                       background: 'rgba(38, 20, 68, 0.85)',
                       border: '1px solid rgba(192, 132, 252, 0.35)',
                       color: '#E9D5FF',
-                      padding: '0.35rem 0.85rem',
-                      borderRadius: '10px'
+                      padding: '0.25rem 0.7rem',
+                      borderRadius: '8px'
                     }}
                   >
                     {tag}
@@ -338,18 +363,18 @@ export default function Projects() {
               </div>
 
               {/* Action Buttons */}
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap' }}>
                 <a
                   href={selectedProject.demoUrl}
                   className="btn-primary"
-                  style={{ flex: '1 1 200px', padding: '0.85rem 1.5rem' }}
+                  style={{ flex: '1 1 140px', padding: '0.7rem 1.25rem', fontSize: '0.9rem' }}
                   onClick={(e) => {
                     e.preventDefault();
-                    alert(`Opening live demo for ${selectedProject.title}`);
+                    alert(`Opening live preview for ${selectedProject.title}`);
                   }}
                 >
                   <span>Live Preview</span>
-                  <ExternalLink size={16} />
+                  <ExternalLink size={15} />
                 </a>
 
                 <a
@@ -358,17 +383,18 @@ export default function Projects() {
                   rel="noopener noreferrer"
                   className="btn-secondary"
                   style={{
-                    flex: '1 1 200px',
+                    flex: '1 1 140px',
                     display: 'inline-flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '0.5rem',
-                    padding: '0.85rem 1.5rem',
+                    gap: '0.45rem',
+                    padding: '0.7rem 1.25rem',
+                    fontSize: '0.9rem',
                     border: '1px solid rgba(192, 132, 252, 0.4)'
                   }}
                 >
                   <span>Source Code</span>
-                  <GithubIcon size={16} />
+                  <GithubIcon size={15} />
                 </a>
               </div>
             </div>

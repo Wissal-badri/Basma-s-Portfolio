@@ -11,9 +11,9 @@ export const personalInfo = {
   phone: "+212 6 12 34 56 78",
   location: "Casablanca, Morocco",
   socials: {
-    linkedin: "https://linkedin.com",
-    github: "https://github.com",
-    instagram: "https://instagram.com"
+    linkedin: "https://www.linkedin.com/in/basmaaboubzou/",
+    github: "https://github.com/Basma-bob",
+    instagram: "https://www.instagram.com/basma_elouatik/"
   }
 };
 
@@ -111,7 +111,7 @@ export const projectsData = [
     tags: ["React", "Node.js", "Express", "MongoDB", "Socket.io"],
     image: "/images/hallow.png",
     demoUrl: "#",
-    githubUrl: "https://github.com"
+    githubUrl: "https://github.com/Basma-bob"
   },
   {
     id: "shophub",
@@ -122,7 +122,7 @@ export const projectsData = [
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
     image: "/images/shophub.jpg",
     demoUrl: "#",
-    githubUrl: "https://github.com"
+    githubUrl: "https://github.com/Basma-bob"
   },
   {
     id: "taskflow",
@@ -133,7 +133,7 @@ export const projectsData = [
     tags: ["React", "Node.js", "MongoDB", "Redux", "Framer Motion"],
     image: "/images/taskflow.jpg",
     demoUrl: "#",
-    githubUrl: "https://github.com"
+    githubUrl: "https://github.com/Basma-bob"
   }
 ];
 
