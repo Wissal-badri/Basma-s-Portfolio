@@ -32,7 +32,8 @@ export default function Footer({ onOpenContact }) {
         borderTop: '1px solid rgba(168, 85, 247, 0.18)',
         padding: '4rem 0 2rem 0',
         position: 'relative',
-        zIndex: 2
+        zIndex: 2,
+        scrollMarginTop: '80px'
       }}
     >
       <div className="container">

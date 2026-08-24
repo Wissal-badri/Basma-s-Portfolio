@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Menu, X, MessageSquare } from 'lucide-react';
+import { Sparkles, Menu, X } from 'lucide-react';
 
 export default function Navbar({ onOpenContact }) {
   const [activeSection, setActiveSection] = useState('home');
@@ -18,23 +18,56 @@ export default function Navbar({ onOpenContact }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 30);
 
-      const sections = navLinks.map(link => document.getElementById(link.id));
-      const scrollPosition = window.scrollY + 200;
+      // If scrolled near the bottom of page, highlight Contact
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollPosition = window.scrollY;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navLinks[i].id);
-          break;
+      if (scrollPosition + windowHeight >= documentHeight - 120) {
+        setActiveSection('contact');
+        return;
+      }
+
+      // Check sections from top to bottom based on viewport position
+      let currentSection = 'home';
+      for (const link of navLinks) {
+        const el = document.getElementById(link.id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          // If the top of the section is within upper half of viewport or section contains the focal point
+          if (rect.top <= 240 && rect.bottom >= 120) {
+            currentSection = link.id;
+          }
         }
       }
+
+      setActiveSection(currentSection);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Run once on load
+    handleScroll();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavClick = (e, href, id) => {
+    e.preventDefault();
+    setActiveSection(id);
+    setMobileMenuOpen(false);
+
+    const el = document.getElementById(id);
+    if (el) {
+      const navOffset = 80;
+      const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - navOffset,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <header
@@ -47,11 +80,11 @@ export default function Navbar({ onOpenContact }) {
         padding: isScrolled ? '0.75rem 0' : '1.25rem 0',
         transition: 'all 0.3s ease',
         background: isScrolled
-          ? 'rgba(7, 3, 12, 0.85)'
-          : 'transparent',
-        backdropFilter: isScrolled ? 'blur(20px)' : 'none',
-        WebkitBackdropFilter: isScrolled ? 'blur(20px)' : 'none',
-        borderBottom: isScrolled ? '1px solid rgba(168, 85, 247, 0.15)' : '1px solid transparent'
+          ? 'rgba(7, 3, 12, 0.88)'
+          : 'rgba(7, 3, 12, 0.4)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderBottom: isScrolled ? '1px solid rgba(168, 85, 247, 0.2)' : '1px solid transparent'
       }}
     >
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -59,6 +92,7 @@ export default function Navbar({ onOpenContact }) {
         {/* Logo */}
         <a
           href="#home"
+          onClick={(e) => handleNavClick(e, '#home', 'home')}
           style={{
             textDecoration: 'none',
             display: 'flex',
@@ -85,13 +119,13 @@ export default function Navbar({ onOpenContact }) {
         <nav
           className="desktop-nav"
           style={{
-            background: 'rgba(20, 10, 35, 0.75)',
-            border: '1px solid rgba(168, 85, 247, 0.25)',
+            background: 'rgba(20, 10, 35, 0.85)',
+            border: '1px solid rgba(168, 85, 247, 0.28)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
             borderRadius: '9999px',
             padding: '0.35rem 0.5rem',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.35)'
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.45)'
           }}
         >
           <ul style={{ display: 'flex', listStyle: 'none', gap: '0.25rem', alignItems: 'center', margin: 0, padding: 0 }}>
@@ -101,6 +135,7 @@ export default function Navbar({ onOpenContact }) {
                 <li key={link.id}>
                   <a
                     href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href, link.id)}
                     style={{
                       display: 'inline-block',
                       padding: '0.45rem 1.1rem',
@@ -108,18 +143,18 @@ export default function Navbar({ onOpenContact }) {
                       fontWeight: isActive ? '600' : '500',
                       color: isActive ? '#FFFFFF' : '#D8B4FE',
                       background: isActive
-                        ? 'linear-gradient(135deg, rgba(147, 51, 234, 0.55), rgba(168, 85, 247, 0.35))'
+                        ? 'linear-gradient(135deg, rgba(147, 51, 234, 0.65), rgba(168, 85, 247, 0.45))'
                         : 'transparent',
                       borderRadius: '9999px',
                       textDecoration: 'none',
-                      transition: 'all 0.25s ease',
-                      border: isActive ? '1px solid rgba(216, 180, 254, 0.35)' : '1px solid transparent',
-                      boxShadow: isActive ? '0 0 16px rgba(168, 85, 247, 0.4)' : 'none'
+                      transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                      border: isActive ? '1px solid rgba(216, 180, 254, 0.4)' : '1px solid transparent',
+                      boxShadow: isActive ? '0 0 18px rgba(168, 85, 247, 0.5)' : 'none'
                     }}
                     onMouseEnter={(e) => {
                       if (!isActive) {
                         e.currentTarget.style.color = '#FFFFFF';
-                        e.currentTarget.style.background = 'rgba(168, 85, 247, 0.15)';
+                        e.currentTarget.style.background = 'rgba(168, 85, 247, 0.2)';
                       }
                     }}
                     onMouseLeave={(e) => {
@@ -146,8 +181,8 @@ export default function Navbar({ onOpenContact }) {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.4rem',
-              background: 'rgba(28, 14, 50, 0.7)',
-              border: '1px solid rgba(192, 132, 252, 0.35)',
+              background: 'rgba(28, 14, 50, 0.75)',
+              border: '1px solid rgba(192, 132, 252, 0.4)',
               color: '#FFFFFF',
               padding: '0.55rem 1.25rem',
               borderRadius: '9999px',
@@ -156,7 +191,7 @@ export default function Navbar({ onOpenContact }) {
               cursor: 'pointer',
               transition: 'all 0.3s ease',
               backdropFilter: 'blur(10px)',
-              boxShadow: '0 4px 15px rgba(147, 51, 234, 0.25)'
+              boxShadow: '0 4px 15px rgba(147, 51, 234, 0.3)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = 'linear-gradient(135deg, #9333EA, #A855F7)';
@@ -164,8 +199,8 @@ export default function Navbar({ onOpenContact }) {
               e.currentTarget.style.transform = 'translateY(-2px)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(28, 14, 50, 0.7)';
-              e.currentTarget.style.boxShadow = '0 4px 15px rgba(147, 51, 234, 0.25)';
+              e.currentTarget.style.background = 'rgba(28, 14, 50, 0.75)';
+              e.currentTarget.style.boxShadow = '0 4px 15px rgba(147, 51, 234, 0.3)';
               e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
@@ -203,13 +238,13 @@ export default function Navbar({ onOpenContact }) {
             top: '100%',
             left: '1rem',
             right: '1rem',
-            background: 'rgba(15, 8, 28, 0.95)',
+            background: 'rgba(15, 8, 28, 0.98)',
             backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(168, 85, 247, 0.3)',
+            border: '1px solid rgba(168, 85, 247, 0.35)',
             borderRadius: '16px',
             padding: '1rem',
             marginTop: '0.5rem',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.7)'
+            boxShadow: '0 20px 40px rgba(0,0,0,0.8)'
           }}
         >
           <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -217,15 +252,16 @@ export default function Navbar({ onOpenContact }) {
               <li key={link.id}>
                 <a
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href, link.id)}
                   style={{
                     display: 'block',
                     padding: '0.7rem 1rem',
                     borderRadius: '10px',
                     color: activeSection === link.id ? '#FFFFFF' : '#D8B4FE',
-                    background: activeSection === link.id ? 'rgba(147, 51, 234, 0.35)' : 'transparent',
+                    background: activeSection === link.id ? 'rgba(147, 51, 234, 0.4)' : 'transparent',
                     textDecoration: 'none',
-                    fontWeight: activeSection === link.id ? '600' : '400'
+                    fontWeight: activeSection === link.id ? '600' : '400',
+                    border: activeSection === link.id ? '1px solid rgba(192, 132, 252, 0.3)' : '1px solid transparent'
                   }}
                 >
                   {link.name}
@@ -236,7 +272,6 @@ export default function Navbar({ onOpenContact }) {
         </div>
       )}
 
-      {/* Inline styles for responsive navbar */}
       <style>{`
         @media (max-width: 860px) {
           .desktop-nav {

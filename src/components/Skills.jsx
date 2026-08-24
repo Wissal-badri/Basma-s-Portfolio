@@ -13,7 +13,7 @@ import { techSkills, skillBars } from '../data/portfolioData';
 
 export default function Skills() {
   return (
-    <section id="skills" className="section-wrapper">
+    <section id="skills" className="section-wrapper" style={{ scrollMarginTop: '80px' }}>
       <div className="container">
         
         {/* Section Title */}

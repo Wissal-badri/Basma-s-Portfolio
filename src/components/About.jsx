@@ -6,7 +6,7 @@ const pillarIcons = [Puzzle, ShieldCheck, Zap];
 
 export default function About() {
   return (
-    <section id="about" className="section-wrapper">
+    <section id="about" className="section-wrapper" style={{ scrollMarginTop: '80px' }}>
       <div className="container">
         
         {/* Section Header */}

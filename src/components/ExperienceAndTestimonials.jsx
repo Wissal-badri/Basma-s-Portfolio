@@ -14,7 +14,7 @@ export default function ExperienceAndTestimonials() {
   };
 
   return (
-    <section id="experience" className="section-wrapper">
+    <section id="experience" className="section-wrapper" style={{ scrollMarginTop: '80px' }}>
       <div className="container">
         
         <div
@@ -123,14 +123,14 @@ export default function ExperienceAndTestimonials() {
           </div>
 
           {/* RIGHT COLUMN: Testimonials */}
-          <div id="testimonials">
+          <div id="testimonials" style={{ scrollMarginTop: '100px' }}>
             <div style={{ marginBottom: '2.5rem' }}>
               <span className="section-script-subtitle">What people say</span>
               <h2 className="section-title">Testimonials</h2>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              {/* Show top 2 testimonials or active cards */}
+              {/* Show testimonials */}
               {testimonialsData.slice(0, 2).map((item, idx) => (
                 <div
                   key={idx}
@@ -138,9 +138,10 @@ export default function ExperienceAndTestimonials() {
                   style={{
                     padding: '1.6rem 1.8rem',
                     borderRadius: '18px',
-                    background: 'rgba(20, 10, 36, 0.75)',
-                    border: '1px solid rgba(168, 85, 247, 0.22)',
-                    position: 'relative'
+                    background: 'rgba(24, 12, 42, 0.82)',
+                    border: '1px solid rgba(192, 132, 252, 0.28)',
+                    position: 'relative',
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.45)'
                   }}
                 >
                   <p
@@ -162,12 +163,12 @@ export default function ExperienceAndTestimonials() {
                         src={item.avatar}
                         alt={item.author}
                         style={{
-                          width: '42px',
-                          height: '42px',
+                          width: '44px',
+                          height: '44px',
                           borderRadius: '50%',
                           objectFit: 'cover',
-                          border: '2px solid rgba(192, 132, 252, 0.5)',
-                          boxShadow: '0 0 12px rgba(168, 85, 247, 0.3)'
+                          border: '2px solid rgba(192, 132, 252, 0.6)',
+                          boxShadow: '0 0 14px rgba(168, 85, 247, 0.35)'
                         }}
                       />
                       <div>
